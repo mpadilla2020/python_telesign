@@ -1,0 +1,19 @@
+from __future__ import print_function
+from telesign.score import ScoreClient
+
+customer_id = "60905E24-B7EA-40E5-B342-DAA56D0A7D01"
+api_key = "1Y6IACKAwhQK4bJp5gDj0D7zCnmd33MZ8USsz7Pzc6Z/JQa2E/7kAMJyP30pkNBhyJz2VUkCjYbLgfVmZ3I9+Q=="
+
+phone_number = "17735128209"
+account_lifecycle_event = "create"
+
+data = ScoreClient(customer_id, api_key)
+response = data.score(phone_number, account_lifecycle_event)
+
+if response.ok:
+    print("Phone number {} has a '{}' risk level and the recommendation is to '{}' the transaction.".format(
+        phone_number,
+        response.json['risk']['level'],
+        response.json['risk']['recommendation']))
+ python hellotelesign.py
+ 
